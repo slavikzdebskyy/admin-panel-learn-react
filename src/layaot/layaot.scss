@@ -1,0 +1,13 @@
+.header-container {
+  padding: 10px 30px;
+  height: 70px;
+  justify-content: space-between;
+  background-color: #de2e2e;
+  color: #fff;
+}
+
+.side-nav-container {
+  width: 200px;
+  height: calc(100vh - 70px);
+  box-shadow: 7px 0px 14px 1px #cccccc;
+}
