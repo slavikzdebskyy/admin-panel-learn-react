@@ -1,17 +1,18 @@
 import React from 'react';
 
-import Header from './layaot/Header';
-import SideBar from './layaot/Side-bar';
+import Header from './layout/Header';
+import SideBar from './layout/Side-bar';
 
 import './App.scss';
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       <Header />
       <div className="main-content">
         <SideBar />
       </div>
+        <footer/>
     </div>   
   );
 }
