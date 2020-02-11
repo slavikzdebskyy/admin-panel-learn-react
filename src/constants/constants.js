@@ -5,6 +5,7 @@ export const ROUTER = {
   personal: 'personal',
   cars: 'cars',
   customers: 'customers',
+  register: 'register',
 }
 
 
