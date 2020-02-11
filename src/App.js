@@ -9,6 +9,7 @@ import {
 import Header from './layout/Header';
 import Login from './components/Login/Login';
 import Main from './layout/Main';
+import Register from './components/Register/Register';
 
 import { ROUTER } from './constants/constants';
 import './App.scss';
@@ -32,6 +33,7 @@ function App() {
         </Route>
           
         <Route path={`/${ROUTER.login}`} component={Login} />
+        <Route path={`/${ROUTER.register}`} component={Register} />
         <Route path={`/${ROUTER.main}`} component={Main} />
 
 
