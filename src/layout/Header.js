@@ -7,19 +7,19 @@ import Button from 'react-bootstrap/Button'
 
 import './layout.scss';
 
-const Header = ({func, loggedIn}) => {
+const Header = ({func}) => {
   const history = useHistory();
 
   const toggle = () => {
-    func(!loggedIn);
-    JSON.stringify(localStorage.setItem('user', !loggedIn));
-    if (loggedIn) {
-      history.push('/')
+    func();
+    const log = JSON.parse(localStorage.getItem('user'));
+    if(log) {
+      history.push('/');
     } else {
-      history.push('/login')
+      history.replace('/login');
     }
-  };
-  console.log(history)
+  }
+
     return (
         <div className="header">
             <Container
