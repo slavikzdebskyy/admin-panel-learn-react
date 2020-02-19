@@ -18,5 +18,4 @@ const AuthRoute = ({children, log, ...rest}) => (
   />
 );
 
-
 export default AuthRoute;

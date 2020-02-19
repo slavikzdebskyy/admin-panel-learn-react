@@ -7,7 +7,3 @@ export const ROUTER = {
   customers: 'customers',
   register: 'register',
 }
-
-
-// /persona/cars:
-//`/${ROUTER.personal}/${ROUTER.cars}`

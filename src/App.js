@@ -7,17 +7,12 @@ import {
 } from "react-router-dom";
 
 import Header from './layout/Header';
-// import Login from './components/Login/Login';
-// import Cars from './components/Cars/Cars';
-// import Personal from './components/Personal/Personal';
-import Register from './components/Register/Register';
-// import SideBar from './layout/Side-bar';
 import AuthRoute from './components/Auth/Auth';
-// import NotFound from './components/404/404';
 
 import {ROUTER} from './constants/constants';
 import './App.scss';
 
+const Register = React.lazy(() => import('./components/Register/Register'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 const Cars = React.lazy(() => import('./components/Cars/Cars'));
 const Personal = React.lazy(() => import('./components/Personal/Personal'));
@@ -43,10 +38,16 @@ function App() {
 
           <Switch>
             <Redirect exact from="/" to={`/${ROUTER.cars}`}/>
-            <Suspense fallback={<Loader/>}>
-              <Route path={`/${ROUTER.login}`} component={Login}/>
-              <Route path={`/${ROUTER.register}`} component={Register}/>
-            </Suspense>
+            <Route path={`/${ROUTER.login}`}>
+              <Suspense fallback={<Loader/>}>
+                <Login/>
+              </Suspense>
+            </Route>
+            <Route path={`/${ROUTER.register}`}>
+              <Suspense fallback={<Loader/>}>
+                <Register/>
+              </Suspense>
+            </Route>
 
             <AuthRoute path={`/${ROUTER.cars}`} log={loggedIn}>
               <Suspense fallback={<Loader/>}>
@@ -68,34 +69,6 @@ function App() {
           </Switch>
 
         </div>
-
-
-
-
-
-
-        {/*{*/}
-        {/*  loggedIn*/}
-        {/*    ?*/}
-        {/*    <div className="main-container">*/}
-        {/*      <SideBar/>*/}
-        {/*      <Redirect to={`/${ROUTER.cars}`}/>*/}
-        {/*      <Switch>*/}
-        {/*        <Route path={`/${ROUTER.cars}`} component={Cars}/>*/}
-        {/*        <Route path={`/${ROUTER.personal}`} component={Personal}/>*/}
-        {/*        <Route path="*" component={NotFound}/>*/}
-        {/*      </Switch>*/}
-        {/*    </div>*/}
-        {/*    :*/}
-        {/*    <div className="main-container">*/}
-        {/*      <Redirect to={`/${ROUTER.login}`}/>*/}
-        {/*      < Switch>*/}
-        {/*        <Route path={`/${ROUTER.login}`} component={Login}/>*/}
-        {/*        <Route path={`/${ROUTER.register}`} component={Register}/>*/}
-        {/*        <Route path="*" component={NotFound}/>*/}
-        {/*      </Switch>*/}
-        {/*    </div>*/}
-        {/*}*/}
       </div>
       <footer/>
     </BrowserRouter>
