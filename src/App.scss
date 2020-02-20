@@ -8,8 +8,9 @@
    flex: 0;
  }
 
- .main-content {
+ .main-container {
    flex: 1 0 auto;
+   display: flex;
  }
 
  footer {
