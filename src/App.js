@@ -6,6 +6,9 @@ import {
   Redirect
 } from "react-router-dom";
 
+import {Provider} from "react-redux";
+import store from "./store/store";
+
 import Header from './layout/Header';
 import AuthRoute from './components/Auth/Auth';
 
@@ -31,47 +34,48 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header func={toggle}/>
-      <div className="app-container">
-        <div className="main-container">
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header func={toggle}/>
+        <div className="app-container">
+          <div className="main-container">
 
-          <Switch>
-            <Redirect exact from="/" to={`/${ROUTER.cars}`}/>
-            <Route path={`/${ROUTER.login}`}>
+            <Switch>
+              <Redirect exact from="/" to={`/${ROUTER.cars}`}/>
+              <Route path={`/${ROUTER.login}`}>
+                <Suspense fallback={<Loader/>}>
+                  <Login/>
+                </Suspense>
+              </Route>
+              <Route path={`/${ROUTER.register}`}>
+                <Suspense fallback={<Loader/>}>
+                  <Register/>
+                </Suspense>
+              </Route>
+
+              <AuthRoute path={`/${ROUTER.cars}`} log={loggedIn}>
+                <Suspense fallback={<Loader/>}>
+                  <SideBar/>
+                  <Cars/>
+                </Suspense>
+              </AuthRoute>
+
+              <AuthRoute path={`/${ROUTER.personal}`} log={loggedIn}>
+                <Suspense fallback={<Loader/>}>
+                  <SideBar/>
+                  <Personal/>
+                </Suspense>
+              </AuthRoute>
+
               <Suspense fallback={<Loader/>}>
-                <Login/>
+                <Route path="*" component={NotFound}/>
               </Suspense>
-            </Route>
-            <Route path={`/${ROUTER.register}`}>
-              <Suspense fallback={<Loader/>}>
-                <Register/>
-              </Suspense>
-            </Route>
-
-            <AuthRoute path={`/${ROUTER.cars}`} log={loggedIn}>
-              <Suspense fallback={<Loader/>}>
-                <SideBar/>
-                <Cars/>
-              </Suspense>
-            </AuthRoute>
-
-            <AuthRoute path={`/${ROUTER.personal}`} log={loggedIn}>
-              <Suspense fallback={<Loader/>}>
-                <SideBar/>
-                <Personal/>
-              </Suspense>
-            </AuthRoute>
-
-            <Suspense fallback={<Loader/>}>
-              <Route path="*" component={NotFound}/>
-            </Suspense>
-          </Switch>
-
+            </Switch>
+          </div>
         </div>
-      </div>
-      <footer/>
-    </BrowserRouter>
+        <footer/>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
