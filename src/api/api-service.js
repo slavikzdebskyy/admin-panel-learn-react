@@ -6,8 +6,9 @@ class ApiService {
     this.url = API_SERVER_URL;
   }
 
-  get() {
-    return fetch(`${this.url}/${this.route}`, {
+  get({page, limit}) {
+    const queries = page && limit ? `?_page=${page}&_limit=${limit}` : '';
+    return fetch(`${this.url}/${this.route}${queries}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

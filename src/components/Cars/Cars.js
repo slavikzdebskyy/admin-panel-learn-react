@@ -8,26 +8,26 @@ import Spinner from "react-bootstrap/Spinner";
 
 
 const Cars = (props) => {
-  useEffect(() => props.init(), [props.init]);
+  const queryParams = {
+    limit: 10,
+    page: 1,
+  };
+  useEffect(() => props.load(queryParams), [props.load]);
 
-  const add = () => {
-    const car = {
-      model: 'Some Model',
-      brand: 'My Brand',
-      price: 120000
-    };
-    props.add(car);
+  const loadMore = () => {
+    queryParams.page++;
+    props.load(queryParams);
   };
 
   return (
     props.isLoading ?  <Spinner animation="border"/> :
       <div className="w-100 cars-container">
-        {props.cars.slice(0, 15).map((car, index) => {
+        {props.cars.map((car, index) => {
             return (
               <Card className="card" key={index}>
                 <CardBody>
                   <CardTitle>{car.brand} {car.model}</CardTitle>
-                  <Button onClick={() => add()}>
+                  <Button>
                     Details
                   </Button>
                 </CardBody>
@@ -36,13 +36,18 @@ const Cars = (props) => {
             )
           }
         )}
+        <div className="load-more">
+          <Button color="success" onClick={() => loadMore()}>
+            Load more ...
+          </Button>
+        </div>
       </div>
   );
 };
 
 const mapStateToProps = ({cars, isLoading}) => ({cars});
 const mapDispatchToProps = () => dispatch => ({
-  init: () => dispatch(initCarsAction()),
+  load: (queryParams) => dispatch(initCarsAction(queryParams)),
   remove: (id) => dispatch(removeCarAction(id)),
   modify: (car) => dispatch(modifyCarAction(car)),
   add: (car) => dispatch(addNewCarAction(car))
