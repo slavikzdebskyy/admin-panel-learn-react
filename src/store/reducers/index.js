@@ -1,9 +1,9 @@
 
 import { combineReducers } from "redux";
-import todos from "./todos.reducer";
 import loaderReducer from "./loader.reducer";
+import carsReducer from "./cars.reducer";
 
 export default combineReducers({
-    toggleLogin: todos,
+    cars: carsReducer,
     isLoading: loaderReducer,
 });
