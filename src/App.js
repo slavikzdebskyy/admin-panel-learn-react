@@ -36,7 +36,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Header func={toggle}/>
+        <Header/>
         <div className="app-container">
           <div className="main-container">
 

@@ -9,8 +9,11 @@ export const ROUTER = {
 }
 
 export const API_SERVER_URL = 'http://localhost:8080';
+
+export const LS_KEY_ADMIN = 'administrator';
 export const API_TYPES = {
   cars: 'CARS',
   personal: 'PERSONAL',
+  login: 'LOGIN',
 }
 

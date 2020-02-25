@@ -13,7 +13,7 @@ const Cars = (props) => {
     page: 1,
   };
   useEffect(() => props.load(queryParams), [props.load]);
-
+  // initPersonalAction
   const loadMore = () => {
     queryParams.page++;
     props.load(queryParams);

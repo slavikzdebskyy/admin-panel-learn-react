@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "react-hook-form": "^4.9.8",
     "react-router": "^5.1.2",
     "redux-devtools": "^3.5.0",
     "redux-thunk": "^2.3.0"

@@ -12,7 +12,7 @@ export const personalActionTypes = {
 
 const personalApi = new CreateApiService(API_TYPES.personal);
 
-export const initPersonalAction = (queryParams) => dispatch => {
+export const initPersonalAction = queryParams => dispatch => {
   dispatch(setLoaderAction());
   personalApi
       .get(queryParams)

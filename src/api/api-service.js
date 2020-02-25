@@ -55,5 +55,9 @@ export class CreateApiService {
     if (apiType === API_TYPES.personal) {
       return new ApiService('personal');
     }
+
+    if (apiType === API_TYPES.login) {
+      return new ApiService('login');
+    }
   }
 }
