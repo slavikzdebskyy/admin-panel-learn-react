@@ -12,6 +12,7 @@ export const carsActionTypes = {
 const carApi = new CreateApiService(API_TYPES.cars);
 
 export const initCarsAction = (queryParams) => dispatch => {
+    console.log(queryParams);
   dispatch(setLoaderAction());
   carApi
     .get(queryParams)
@@ -21,6 +22,7 @@ export const initCarsAction = (queryParams) => dispatch => {
       dispatch(removeLoaderAction());
       console.error(error);
     });
+  console.log('after', queryParams);
 };
 
 export const removeCarAction = (id) => dispatch => {
