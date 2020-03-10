@@ -2,7 +2,7 @@ import React from "react";
 import {Route, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
-const AuthRoute = ({children, log, admin, ...rest}) => { console.log('admin Auth => ', admin)
+const AuthRoute = ({children, log, admin, ...rest}) => {
   return (
     <Route
       {...rest}
@@ -20,7 +20,6 @@ const AuthRoute = ({children, log, admin, ...rest}) => { console.log('admin Auth
     />
   );
 }
-
 
 const mapStoreToProps = ({ admin }) => ({ admin });
 

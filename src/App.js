@@ -26,12 +26,8 @@ const Loader = () => <div>Loading .....</div>;
 
 function App() {
   const getIsLogged = JSON.parse(localStorage.getItem('user')) || false;
-  const [loggedIn, setLoggedIn] = useState(getIsLogged);
+  const [loggedIn] = useState(getIsLogged);
 
-  const toggle = () => {
-    JSON.stringify(localStorage.setItem('user', !loggedIn));
-    setLoggedIn(!loggedIn);
-  };
 
   return (
     <Provider store={store}>
