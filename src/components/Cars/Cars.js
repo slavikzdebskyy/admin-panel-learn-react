@@ -8,6 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 
 
 const Cars = (props) => {
+  console.log(props);
   const queryParams = {
     limit: 10,
     page: 1,

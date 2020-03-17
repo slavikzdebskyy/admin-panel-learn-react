@@ -22,6 +22,7 @@ export const loginAdminAction = (formData) => dispatch => {
   dispatch(setLoaderAction());
   loginApi.post(formData)
     .then( ({ user }) => {
+        console.log(user);
       dispatch({ type: adminActionTypes.login, payload: user });
       localStorage.setItem(LS_KEY_ADMIN, JSON.stringify(user));
 

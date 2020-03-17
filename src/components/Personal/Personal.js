@@ -1,27 +1,51 @@
-import React from 'react';
+import React, {useEffect}  from 'react';
+import {Card, Button, CardTitle, CardFooter, CardBody, CardImg} from 'reactstrap';
 
-import {initPersonalAction, modifyPersonalAction, addNewPersonalAction, removePersonalAction} from "../../store/action/personal.actions";
+import './Personal.scss';
+import {initPersonalAction, modifyPersonAction, addNewPersonAction, removePersonAction} from "../../store/action/personal.actions";
+
 import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 
-import './Personal.scss';
-import {addNewCarAction, initCarsAction, modifyCarAction, removeCarAction} from "../../store/action/cars.actions";
-
 const Personal = (props) => {
+    console.log(props);
+    const queryParams = {
+        limit: 10,
+        page: 1,
+    };
+    useEffect(() => props.load(queryParams), [props.load]);
+    // initPersonalAction
+    const loadMore = () => {
+        queryParams.page++;
+        props.load(queryParams);
+    };
     return (
         props.isLoading ?  <Spinner animation="border"/> :
         <div className="w-100">
-           <h5>This is Personal Component</h5>
+
+            {props.personal.map((person, index) => {
+
+                console.log(props.personal, 'map');
+                return (
+                  <Card className="card" key={index}>
+                      <CardBody>
+                          <CardImg top width="100%" src={person.photo} />
+                          <CardTitle>{person.first_name} {person.last_name}</CardTitle>
+                      </CardBody>
+                  </Card>
+                )
+            }
+            )}
         </div>
     )
 };
 
 const mapStateToProps = ({personal, isLoading}) => ({personal});
 const mapDispatchToProps = () => dispatch => ({
-    load: (queryParams) => dispatch(initCarsAction(queryParams)),
-    remove: (id) => dispatch(removeCarAction(id)),
-    modify: (person) => dispatch(modifyCarAction(person)),
-    add: (person) => dispatch(addNewCarAction(person))
+    load: (queryParams) => dispatch(initPersonalAction(queryParams)),
+    remove: (id) => dispatch(removePersonAction(id)),
+    modify: (person) => dispatch(modifyPersonAction(person)),
+    add: (person) => dispatch(addNewPersonAction(person))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Personal);

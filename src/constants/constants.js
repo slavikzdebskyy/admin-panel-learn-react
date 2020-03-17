@@ -15,5 +15,5 @@ export const API_TYPES = {
   cars: 'CARS',
   personal: 'PERSONAL',
   login: 'LOGIN',
-}
+};
 
