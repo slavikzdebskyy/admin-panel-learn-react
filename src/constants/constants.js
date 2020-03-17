@@ -4,6 +4,7 @@ export const ROUTER = {
   login: 'login',
   personal: 'personal',
   cars: 'cars',
+  car_detail: 'car-detail/:id',
   customers: 'customers',
   register: 'register',
 }

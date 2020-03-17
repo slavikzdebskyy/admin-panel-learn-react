@@ -5,15 +5,16 @@ import './Cars.scss';
 import {addNewCarAction, initCarsAction, modifyCarAction, removeCarAction} from "../../store/action/cars.actions";
 import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
+import {ROUTER} from "../../constants/constants";
+import {Link} from "react-router-dom";
 
 
 const Cars = (props) => {
-  console.log(props);
   const queryParams = {
     limit: 10,
     page: 1,
   };
-  useEffect(() => props.load(queryParams), [props.load]);
+  useEffect(() => props.load(queryParams), []);
   // initPersonalAction
   const loadMore = () => {
     queryParams.page++;
@@ -28,9 +29,11 @@ const Cars = (props) => {
               <Card className="card" key={index}>
                 <CardBody>
                   <CardTitle>{car.brand} {car.model}</CardTitle>
-                  <Button>
-                    Details
-                  </Button>
+                  <Link to={`/car-detail/${car.id}`}>
+                    <Button>
+                      Details
+                    </Button>
+                  </Link>
                 </CardBody>
                 <CardFooter>{car.year} {car.price} $</CardFooter>
               </Card>
@@ -46,7 +49,7 @@ const Cars = (props) => {
   );
 };
 
-const mapStateToProps = ({cars, isLoading}) => ({cars});
+const mapStateToProps = ({cars}) => ({cars});
 const mapDispatchToProps = () => dispatch => ({
   load: (queryParams) => dispatch(initCarsAction(queryParams)),
   remove: (id) => dispatch(removeCarAction(id)),

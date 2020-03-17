@@ -1,6 +1,6 @@
 import {adminActionTypes} from "../action/admin.actions";
 
-export const adminReducer = (state = null, {type, payload}) => {
+const adminReducer = (state = null, {type, payload}) => {
   switch (type) {
     case adminActionTypes.login:
       return payload;
@@ -15,3 +15,5 @@ export const adminReducer = (state = null, {type, payload}) => {
       return state;
   }
 };
+
+export default adminReducer;

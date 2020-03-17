@@ -1,5 +1,5 @@
 import React, {useEffect}  from 'react';
-import {Card, Button, CardTitle, CardFooter, CardBody, CardImg} from 'reactstrap';
+import {Card, CardTitle, CardBody, CardImg} from 'reactstrap';
 
 import './Personal.scss';
 import {initPersonalAction, modifyPersonAction, addNewPersonAction, removePersonAction} from "../../store/action/personal.actions";
@@ -8,24 +8,21 @@ import {connect} from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 
 const Personal = (props) => {
-    console.log(props);
     const queryParams = {
         limit: 10,
         page: 1,
     };
-    useEffect(() => props.load(queryParams), [props.load]);
+    useEffect(() => props.load(queryParams), []);
     // initPersonalAction
-    const loadMore = () => {
-        queryParams.page++;
-        props.load(queryParams);
-    };
+    // const loadMore = () => {
+    //     queryParams.page++;
+    //     props.load(queryParams);
+    // };
     return (
         props.isLoading ?  <Spinner animation="border"/> :
         <div className="w-100">
 
             {props.personal.map((person, index) => {
-
-                console.log(props.personal, 'map');
                 return (
                   <Card className="card" key={index}>
                       <CardBody>

@@ -8,7 +8,7 @@ const loaderReducer = (isLoading = false, action) => {
             return false;
 
         default:
-            return false;
+            return isLoading;
     }
 };
 

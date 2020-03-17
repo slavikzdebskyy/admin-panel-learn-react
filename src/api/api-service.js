@@ -6,9 +6,18 @@ class ApiService {
     this.url = API_SERVER_URL;
   }
 
-  get({page, limit}) {
+  get({page, limit, id}) {
     const queries = page && limit ? `?_page=${page}&_limit=${limit}` : '';
     return fetch(`${this.url}/${this.route}${queries}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+  };
+
+  getByID(id) {
+    return fetch(`${this.url}/${this.route}/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

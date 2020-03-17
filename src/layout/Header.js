@@ -1,28 +1,14 @@
 import React, {useEffect} from 'react';
-import {useHistory} from "react-router";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button'
 
 import './layout.scss';
 import {initAdminAction} from "../store/action/admin.actions";
 import {connect} from "react-redux";
 
-const Header = ({ admin , init}) => {
-  const history = useHistory();
+const Header = ({ init}) => {
   useEffect(() => init(), [init]);
-
-  // const toggle = () => {
-  //   func();
-  //   const log = JSON.parse(localStorage.getItem('user'));
-  //   if(log) {
-  //     history.push('/');
-  //   } else {
-  //     history.replace('/login');
-  //   }
-  // }
-
     return (
         <div className="header">
             <Container
